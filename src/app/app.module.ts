@@ -1,8 +1,18 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SharedModule } from './shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+// Configuracion de localizacion de la app
+import localeEsDO from "@angular/common/locales/es-DO";
+import localeFrCA from "@angular/common/locales/fr-CA";
+import { registerLocaleData } from "@angular/common";
+
+registerLocaleData(localeEsDO);
+registerLocaleData(localeFrCA);
 
 @NgModule({
   declarations: [
@@ -10,9 +20,15 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule,
+    BrowserAnimationsModule
+],
+  providers: [
+    {
+      provide: LOCALE_ID, useValue: 'es-DO'
+    }
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
